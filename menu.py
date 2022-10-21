@@ -29,39 +29,13 @@ def info_calc(update, context):
 /complex a+bj * c-dj
 Команда, числа, и операторы отделяются пробелами""")
 
-def float_calculate(update, context):
-    arg = context.args
-   
-    a = float(arg[0])
-    operator = arg[1]
-    b = float(arg[2])
-    if operator == '*':
-        result = oper.mult(a, b)
-    elif operator == '/':
-        if b == 0:
-            result = 'Деление на ноль невозможно'
-        else:    
-            result = oper.div(a, b)
-    elif operator == '+':
-        result = oper.sum(a, b)
-    elif operator == '-':
-        result = oper.diff(a, b)
+def play(update, context):
+    context.bot.send_message(update.effective_chat.id,
+f""" Поздравляю {update.effective_user.first_name}
+Ты выбрал игру в конфетки
+Правила очень просты:
+каждый по очереди берет конфеты
+кто заберет последние - тот выйграл 
+~~ К сожаленю не довел игру до ума
+времени катастрофически не хватает~~ """)
 
-    context.bot.send_message(update.effective_chat.id, f"Ответ на выражение {a}{operator}{b} = {result}")
-
-def complex_calculate(update, context):
-    arg = context.args
-
-    a = complex(arg[0])
-    operator = arg[1]
-    b = complex(arg[2])
-    if operator == '*':
-        result = oper.mult(a, b)
-    elif operator == '/':
-        result = oper.div(a, b)
-    elif operator == '+':
-        result = oper.sum(a, b)
-    elif operator == '-':
-        result = oper.diff(a, b)
-
-    context.bot.send_message(update.effective_chat.id, f"Ответ на выражение {a}{operator}{b} = {result}")
